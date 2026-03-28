@@ -7,8 +7,6 @@
 <title>EcoSort AI — Zero-Waste Vision</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:#04080a;overflow:hidden}
 body{font-family:'DM Sans',system-ui,sans-serif;color:#d8e8dc;-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
@@ -17,8 +15,6 @@ input{font-family:inherit;color:inherit;border:none;outline:none;background:none
 img{display:block;max-width:100%}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:#1a2e1e;border-radius:99px}
-
-/* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100dvh;height:100vh;background:#04080a;position:relative;overflow:hidden}
 #bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0;transition:background 1.4s ease}
 #header{display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:56px;border-bottom:1px solid #0c1810;flex-shrink:0;z-index:10;position:relative;background:rgba(4,8,10,0.85);backdrop-filter:blur(20px)}
@@ -26,12 +22,8 @@ img{display:block;max-width:100%}
 #ticker-inner{display:inline-block;animation:ticker 38s linear infinite}
 #content{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;z-index:1}
 #bottom-nav{display:flex;align-items:center;justify-content:space-around;padding:5px 4px;padding-bottom:max(5px,env(safe-area-inset-bottom,5px));border-top:1px solid #0c1810;flex-shrink:0;z-index:10;background:rgba(4,8,10,0.85);backdrop-filter:blur(20px)}
-
-/* ── TABS ── */
 .tab{display:none;padding:14px 13px 36px;max-width:520px;margin:0 auto}
 .tab.active{display:block}
-
-/* ── ANIMATIONS ── */
 @keyframes sweep{0%{top:-3px}100%{top:calc(100% + 3px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -45,15 +37,11 @@ img{display:block;max-width:100%}
 @keyframes slideUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes gridGlow{0%,100%{opacity:.1}50%{opacity:.25}}
 @keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-
-/* ── UTILITY ── */
 .au{animation:fadeUp .5s cubic-bezier(.34,1.3,.64,1) both}
 .ap{animation:pop .4s cubic-bezier(.34,1.56,.64,1) both}
 .as{animation:slideUp .5s cubic-bezier(.34,1.15,.64,1) both}
 .af{animation:fadeIn .35s ease both}
 .sk{background:linear-gradient(90deg,#0c1810 25%,#152210 50%,#0c1810 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:10px}
-
-/* ── CAMERA MODAL ── */
 #cam-modal{position:fixed;inset:0;background:rgba(2,5,3,.97);z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px}
 #cam-modal.open{display:flex;animation:fadeIn .25s ease}
 #cam-wrap{position:relative;width:min(93vw,460px);border-radius:22px;overflow:hidden;border:2px solid rgba(0,255,135,.4);box-shadow:0 0 60px rgba(0,255,135,.2)}
@@ -66,8 +54,6 @@ img{display:block;max-width:100%}
 .corner.tr{top:10px;right:10px;border-top:2px solid #00ff87;border-right:2px solid #00ff87}
 .corner.bl{bottom:10px;left:10px;border-bottom:2px solid #00ff87;border-left:2px solid #00ff87}
 .corner.br{bottom:10px;right:10px;border-bottom:2px solid #00ff87;border-right:2px solid #00ff87}
-
-/* ── SCAN OVERLAY ── */
 #scan-overlay{position:absolute;inset:0;background:rgba(3,7,5,.58);display:none;z-index:3}
 #scan-overlay.active{display:block}
 .so-sweep{position:absolute;left:0;right:0;height:3px;top:0;background:linear-gradient(90deg,transparent,var(--ac),var(--ac),transparent);box-shadow:0 0 22px var(--ac);animation:sweep 1.25s ease-in-out infinite;z-index:5}
@@ -77,12 +63,8 @@ img{display:block;max-width:100%}
 .so-bars{display:flex;gap:2px;align-items:flex-end}
 .so-bar{width:2px;border-radius:2px;background:var(--ac);opacity:.7}
 .so-corners .corner{animation:none}
-
-/* ── DETECTION BOX ── */
 .det-box{position:absolute;border:1px solid rgba(0,255,135,.65);border-radius:3px;animation:fadeIn .2s ease}
 .det-label{position:absolute;top:-17px;left:0;background:rgba(0,255,135,.12);border:1px solid rgba(0,255,135,.4);color:#00ff87;font-size:.55rem;padding:1px 5px;font-family:'JetBrains Mono';white-space:nowrap;border-radius:4px}
-
-/* ── CARDS / COMPONENTS ── */
 .card{background:#080d09;border:1px solid #0c1610;border-radius:18px;padding:14px 16px;margin-bottom:9px}
 .drop-zone{border:2px dashed rgba(0,255,135,.28);border-radius:22px;padding:38px 20px;display:flex;flex-direction:column;align-items:center;gap:11px;cursor:pointer;background:rgba(0,255,135,.03);margin-bottom:12px;transition:border-color .2s,background .2s;text-align:center}
 .drop-zone:hover{border-color:rgba(0,255,135,.45);background:rgba(0,255,135,.06)}
@@ -104,15 +86,12 @@ img{display:block;max-width:100%}
 .img-wrap{border-radius:20px;overflow:hidden;position:relative;background:#080d09;border:1px solid #0c1610;margin-bottom:12px;transition:border .6s}
 .img-wrap img{width:100%;max-height:270px;object-fit:cover;transition:filter .3s}
 .img-overlay-bottom{position:absolute;bottom:0;left:0;right:0;padding:9px 13px;background:linear-gradient(transparent,rgba(4,8,10,.95));display:flex;justify-content:space-between;align-items:center}
-
-/* ── RESULT CARD ── */
 .result-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--cat-border);background:rgba(4,8,10,.95);box-shadow:0 0 60px var(--cat-glow),0 20px 60px rgba(0,0,0,.5);animation:slideUp .5s cubic-bezier(.34,1.15,.64,1)}
 .result-hero{padding:20px 20px 16px;border-bottom:1px solid var(--cat-border-dim)}
 .result-label{font-size:.58rem;font-family:'JetBrains Mono';letter-spacing:.2em;margin-bottom:10px;opacity:.8}
 .result-name{font-family:'Chakra Petch';font-weight:700;font-size:1.65rem;color:#e4f4e8;line-height:1.05;margin-bottom:4px;animation:pop .4s cubic-bezier(.34,1.56,.64,1)}
 .result-sub{font-size:.76rem;color:#3a5e42;margin-bottom:14px}
 .result-badges{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.badge-main{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:8px 18px;font-size:.83rem;font-family:'Chakra Petch';font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .badge-sub{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:99px;padding:5px 11px;font-size:.66rem;color:#5a7a62;font-family:'Chakra Petch';font-weight:500}
 .result-stats{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--cat-border-dim)}
 .stat-cell{padding:16px 18px}
@@ -146,8 +125,6 @@ img{display:block;max-width:100%}
 .alt-item{padding:8px 0;border-bottom:1px solid #0c1810;font-size:.78rem;color:#5a8062}
 .result-cta{padding:14px 20px}
 .section-micro{font-size:.58rem;color:#1e3820;font-family:'JetBrains Mono';letter-spacing:.14em;margin-bottom:9px}
-
-/* ── HISTORY ── */
 .filter-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
 .filter-btn{border-radius:99px;padding:5px 11px;font-size:.68rem;font-family:'Chakra Petch';font-weight:500;letter-spacing:.05em;flex-shrink:0;transition:all .15s;border:1px solid #0c1610;background:#080d09;color:#3a5840}
 .filter-btn.active{background:rgba(0,255,135,.1);border-color:rgba(0,255,135,.28);color:#00ff87}
@@ -161,8 +138,6 @@ img{display:block;max-width:100%}
 .empty-emoji{font-size:3rem;margin-bottom:10px;animation:float 3s ease-in-out infinite}
 .empty-title{font-family:'Chakra Petch';font-weight:700;color:#2a4a30;margin-bottom:5px}
 .empty-sub{font-size:.78rem}
-
-/* ── IMPACT ── */
 .co2-hero{background:linear-gradient(140deg,rgba(0,255,135,.08),rgba(0,255,135,.02));border:1px solid rgba(0,255,135,.2);border-radius:22px;padding:26px 22px;text-align:center;margin-bottom:10px;box-shadow:0 0 60px rgba(0,255,135,.06)}
 .co2-micro{font-size:.58rem;color:#1e5030;font-family:'JetBrains Mono';letter-spacing:.2em;margin-bottom:10px}
 .co2-big{font-family:'Chakra Petch';font-weight:700;font-size:3.8rem;color:#00ff87;line-height:1;text-shadow:0 0 40px rgba(0,255,135,.45)}
@@ -189,8 +164,6 @@ img{display:block;max-width:100%}
 .rank-bar-fill{height:100%;border-radius:99px;transition:width 1.5s ease}
 .rank-chips{display:flex;flex-wrap:wrap;gap:5px}
 .rank-chip{border-radius:8px;padding:4px 9px;font-size:.68rem;transition:all .4s}
-
-/* ── GUIDE ── */
 .guide-card{background:#080d09;border-radius:18px;padding:16px 18px;margin-bottom:9px;animation:fadeUp .4s ease}
 .guide-header{display:flex;align-items:center;gap:12px;margin-bottom:11px}
 .guide-icon{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0}
@@ -199,190 +172,161 @@ img{display:block;max-width:100%}
 .guide-divider{height:1px;margin-bottom:10px}
 .guide-bin{font-size:.68rem;color:#2a4a30;font-family:'JetBrains Mono';letter-spacing:.05em}
 .guide-tip{font-size:.78rem;color:#5a8a62;line-height:1.65;margin-bottom:10px}
-
-/* ── NAV ── */
 .nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 16px;border-radius:14px;background:transparent;color:#2e5038;transition:all .18s;min-width:64px}
 .nav-btn.active{background:rgba(0,255,135,.08);color:#00ff87}
 .nav-icon{font-size:1.2rem}
 .nav-label{font-size:.58rem;font-family:'Chakra Petch';font-weight:500;letter-spacing:.08em;text-transform:uppercase}
-
-/* ── TOAST ── */
 #toast-area{position:fixed;top:64px;right:12px;z-index:998;display:flex;flex-direction:column;gap:7px;max-width:260px;pointer-events:none}
 .toast{background:rgba(4,8,10,.9);backdrop-filter:blur(20px);border:1px solid rgba(0,255,135,.22);border-radius:14px;padding:10px 14px;font-size:.8rem;display:flex;align-items:center;gap:9px;box-shadow:0 4px 24px rgba(0,0,0,.6);animation:pop .35s ease;pointer-events:none}
 .toast-msg{color:#a8c8b0;line-height:1.4}
-
-/* ── POINTS POP ── */
 #pts-pop{position:fixed;bottom:22%;right:22px;z-index:999;font-family:'Chakra Petch';font-weight:700;font-size:2.2rem;color:#ffcc00;text-shadow:0 0 24px rgba(255,204,0,.7);pointer-events:none;display:none}
 #pts-pop.show{display:block;animation:ptsPop 1.5s forwards}
-
-/* ── SKELETON ── */
 .skel-row{display:flex;gap:9px;margin-bottom:9px}
 .skel{background:linear-gradient(90deg,#0c1810 25%,#152210 50%,#0c1810 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:10px}
-
-/* ── CONFETTI CANVAS ── */
 #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999}
-
-/* ── SECTION TITLES ── */
 .section-title{font-family:'Chakra Petch';font-weight:700;font-size:1.25rem;margin-bottom:3px}
 .section-desc{font-size:.62rem;color:#1e3820;font-family:'JetBrains Mono';margin-bottom:14px;letter-spacing:.12em}
-
-/* ── PIE CHART FALLBACK ── */
-.pie-svg{width:160px;height:160px;margin:0 auto 10px}
 </style>
 </head>
 <body>
 <canvas id="confetti-canvas"></canvas>
-
 <div id="app">
-  <div id="bg-glow"></div>
+<div id="bg-glow"></div>
 
-  <!-- HEADER -->
-  <div id="header">
-    <div style="display:flex;align-items:center;gap:10px">
-      <div id="logo-icon" style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#081510,#122018);border:1px solid rgba(0,255,135,.4);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 20px rgba(0,255,135,.25);transition:border-color .8s,box-shadow .8s">♻</div>
-      <div>
-        <div id="logo-text" style="font-family:'Chakra Petch';font-weight:700;font-size:.95rem;color:#00ff87;letter-spacing:.02em;line-height:1;text-shadow:0 0 18px rgba(0,255,135,.5);transition:color .8s">EcoSort AI</div>
-        <div style="font-size:.5rem;color:#1e3820;font-family:'JetBrains Mono';letter-spacing:.14em">ZERO-WASTE VISION</div>
+<!-- HEADER -->
+<div id="header">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div id="logo-icon" style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#081510,#122018);border:1px solid rgba(0,255,135,.4);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 20px rgba(0,255,135,.25)">♻</div>
+    <div>
+      <div id="logo-text" style="font-family:'Chakra Petch';font-weight:700;font-size:.95rem;color:#00ff87;letter-spacing:.02em;line-height:1;text-shadow:0 0 18px rgba(0,255,135,.5)">EcoSort AI</div>
+      <div style="font-size:.5rem;color:#1e3820;font-family:'JetBrains Mono';letter-spacing:.14em">ZERO-WASTE VISION</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px">
+    <button id="voice-btn" title="Toggle voice" style="width:30px;height:30px;border-radius:9px;background:#0a1210;border:1px solid #142018;font-size:.8rem;display:flex;align-items:center;justify-content:center">🔇</button>
+    <div style="display:flex;align-items:center;gap:5px;background:#0a1210;border:1px solid #142018;border-radius:99px;padding:4px 11px;font-size:.72rem">
+      <span style="color:#ffcc00">⚡</span>
+      <span id="hdr-pts" style="font-family:'JetBrains Mono';color:#b8d8c0;font-weight:600">0</span>
+    </div>
+    <button id="name-btn" style="background:#0a1210;border:1px solid #142018;border-radius:99px;padding:4px 9px;font-size:.68rem;color:#3a5840;display:flex;align-items:center;gap:4px">🌱 EcoHero</button>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div id="ticker-wrap"><span id="ticker-inner">Loading tips…</span></div>
+
+<!-- CONTENT -->
+<div id="content">
+
+  <!-- SCAN TAB -->
+  <div id="tab-scan" class="tab active">
+    <div id="idle-state">
+      <div class="drop-zone" id="drop-zone">
+        <div class="drop-emoji">🌍</div>
+        <div class="drop-title" id="drop-title">Drop a waste image here</div>
+        <div class="drop-sub">Drag &amp; drop · Tap to browse<br>or use your camera</div>
+      </div>
+      <div class="action-grid">
+        <button class="btn-gallery" id="btn-gallery"><span style="font-size:1.35rem">🖼️</span> Gallery</button>
+        <button class="btn-camera" id="btn-camera"><span style="font-size:1.35rem">📸</span> Camera<span class="cam-pulse"></span></button>
+      </div>
+      <div id="recent-wrap" style="display:none">
+        <div class="section-micro">RECENT SCANS</div>
+        <div id="recent-list"></div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <button id="key-btn" title="Set API Key" style="width:30px;height:30px;border-radius:9px;background:#0a1210;border:1px solid #142018;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s">⚙️</button>
-      <button id="voice-btn" title="Toggle voice" style="width:30px;height:30px;border-radius:9px;background:#0a1210;border:1px solid #142018;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s">🔇</button>
-      <div style="display:flex;align-items:center;gap:5px;background:#0a1210;border:1px solid #142018;border-radius:99px;padding:4px 11px;font-size:.72rem">
-        <span style="color:#ffcc00">⚡</span>
-        <span id="hdr-pts" style="font-family:'JetBrains Mono';color:#b8d8c0;font-weight:600">0</span>
+    <input type="file" id="file-input" accept="image/*" style="display:none"/>
+    <div id="scan-state" style="display:none">
+      <div class="img-wrap" id="img-wrap">
+        <img id="preview-img" alt="waste"/>
+        <div id="scan-overlay">
+          <div class="so-sweep" id="so-sweep"></div>
+          <div class="so-grid"></div>
+          <div id="det-boxes"></div>
+          <div class="so-corners">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+          </div>
+          <div class="so-hud">
+            <div class="so-hud-label" id="hud-label">◈ NEURAL·NET</div>
+            <div class="so-bars" id="hud-bars"></div>
+          </div>
+        </div>
+        <div class="img-overlay-bottom" id="img-overlay" style="display:none">
+          <span id="overlay-badge"></span>
+          <span id="overlay-conf" style="font-family:'JetBrains Mono';font-size:.62rem"></span>
+        </div>
       </div>
-      <button id="name-btn" style="background:#0a1210;border:1px solid #142018;border-radius:99px;padding:4px 9px;font-size:.68rem;color:#3a5840;display:flex;align-items:center;gap:4px">🌱 EcoHero</button>
+      <div class="btn-pair" id="preview-btns">
+        <button class="btn-reset" onclick="resetScan()" style="flex:1">✕ RESET</button>
+        <button class="btn-main" id="analyze-btn" onclick="classify()" style="flex:2.5">🔍 ANALYZE WASTE</button>
+      </div>
+      <div id="skeleton" style="display:none">
+        <div class="skel-row"><div class="skel" style="height:70px;flex:1"></div><div class="skel" style="height:70px;flex:1"></div></div>
+        <div class="skel" style="height:48px;margin-bottom:9px"></div>
+        <div class="skel" style="height:84px;margin-bottom:9px"></div>
+        <div style="text-align:center;font-family:'JetBrains Mono';font-size:.67rem;color:#00ff87;letter-spacing:.2em;animation:blink .85s infinite;margin-top:2px">◈ RUNNING NEURAL ANALYSIS ◈</div>
+      </div>
+      <div id="error-box" style="display:none;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.24);border-radius:16px;padding:14px 18px;margin-bottom:12px">
+        <div id="error-msg" style="color:#ff6b6b;font-weight:600;margin-bottom:9px;font-size:.86rem"></div>
+        <div style="display:flex;gap:7px">
+          <button onclick="classify()" style="background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.28);border-radius:10px;padding:7px 14px;font-size:.76rem;color:#ff6b6b;font-family:'Chakra Petch'">Retry</button>
+          <button onclick="resetScan()" style="background:#0a1210;border:1px solid #182018;border-radius:10px;padding:7px 14px;font-size:.76rem;color:#3a5840">Upload New</button>
+        </div>
+      </div>
+      <div id="result-card" style="display:none"></div>
     </div>
   </div>
 
-  <!-- TICKER -->
-  <div id="ticker-wrap">
-    <span id="ticker-inner">Loading tips…</span>
+  <!-- HISTORY TAB -->
+  <div id="tab-history" class="tab">
+    <div class="section-title" id="hist-title" style="color:#00ff87">Scan History</div>
+    <div class="section-desc" id="hist-desc">0 ITEMS · 0.00 kg CO₂ OFFSET</div>
+    <div class="filter-row" id="filter-row"></div>
+    <div id="hist-list"></div>
   </div>
 
-  <!-- CONTENT -->
-  <div id="content">
-
-    <!-- SCAN TAB -->
-    <div id="tab-scan" class="tab active">
-      <div id="idle-state">
-        <div class="drop-zone" id="drop-zone">
-          <div class="drop-emoji">🌍</div>
-          <div class="drop-title" id="drop-title">Drop a waste image here</div>
-          <div class="drop-sub">Drag &amp; drop · Tap to browse<br>or use your camera</div>
-        </div>
-        <div class="action-grid">
-          <button class="btn-gallery" id="btn-gallery"><span style="font-size:1.35rem">🖼️</span> Gallery</button>
-          <button class="btn-camera" id="btn-camera"><span style="font-size:1.35rem">📸</span> Camera<span class="cam-pulse"></span></button>
-        </div>
-        <div id="recent-wrap" style="display:none">
-          <div class="section-micro">RECENT SCANS</div>
-          <div id="recent-list"></div>
-        </div>
-      </div>
-      <input type="file" id="file-input" accept="image/*" style="display:none"/>
-
-      <div id="scan-state" style="display:none">
-        <div class="img-wrap" id="img-wrap">
-          <img id="preview-img" alt="waste"/>
-          <div id="scan-overlay">
-            <div class="so-sweep" id="so-sweep"></div>
-            <div class="so-grid"></div>
-            <div id="det-boxes"></div>
-            <div class="so-corners">
-              <div class="corner tl"></div><div class="corner tr"></div>
-              <div class="corner bl"></div><div class="corner br"></div>
-            </div>
-            <div class="so-hud">
-              <div class="so-hud-label" id="hud-label">◈ NEURAL·NET</div>
-              <div class="so-bars" id="hud-bars"></div>
-            </div>
-          </div>
-          <div class="img-overlay-bottom" id="img-overlay" style="display:none">
-            <span id="overlay-badge"></span>
-            <span id="overlay-conf" style="font-family:'JetBrains Mono';font-size:.62rem"></span>
-          </div>
-        </div>
-
-        <!-- Preview buttons -->
-        <div class="btn-pair" id="preview-btns">
-          <button class="btn-reset" onclick="resetScan()" style="flex:1">✕ RESET</button>
-          <button class="btn-main" id="analyze-btn" onclick="classify()" style="flex:2.5">🔍 ANALYZE WASTE</button>
-        </div>
-
-        <!-- Scanning skeleton -->
-        <div id="skeleton" style="display:none">
-          <div class="skel-row"><div class="skel" style="height:70px;flex:1"></div><div class="skel" style="height:70px;flex:1"></div></div>
-          <div class="skel" style="height:48px;margin-bottom:9px"></div>
-          <div class="skel" style="height:84px;margin-bottom:9px"></div>
-          <div style="text-align:center;font-family:'JetBrains Mono';font-size:.67rem;color:#00ff87;letter-spacing:.2em;animation:blink .85s infinite;margin-top:2px">◈ RUNNING NEURAL ANALYSIS ◈</div>
-        </div>
-
-        <!-- Error state -->
-        <div id="error-box" style="display:none;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.24);border-radius:16px;padding:14px 18px;margin-bottom:12px">
-          <div id="error-msg" style="color:#ff6b6b;font-weight:600;margin-bottom:9px;font-size:.86rem"></div>
-          <div style="display:flex;gap:7px">
-            <button onclick="classify()" style="background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.28);border-radius:10px;padding:7px 14px;font-size:.76rem;color:#ff6b6b;font-family:'Chakra Petch'">Retry</button>
-            <button onclick="resetScan()" style="background:#0a1210;border:1px solid #182018;border-radius:10px;padding:7px 14px;font-size:.76rem;color:#3a5840">Upload New</button>
-          </div>
-        </div>
-
-        <!-- Result card -->
-        <div id="result-card" style="display:none"></div>
-      </div>
+  <!-- IMPACT TAB -->
+  <div id="tab-impact" class="tab">
+    <div class="section-title" style="color:#00ff87">Your Impact</div>
+    <div class="section-desc">PERSONAL ENVIRONMENTAL FOOTPRINT</div>
+    <div class="co2-hero">
+      <div class="co2-micro">TOTAL CO₂ OFFSET</div>
+      <div class="co2-big" id="impact-co2">0.00</div>
+      <div class="co2-unit">kilograms of CO₂ equivalent</div>
     </div>
-
-    <!-- HISTORY TAB -->
-    <div id="tab-history" class="tab">
-      <div class="section-title" id="hist-title" style="color:#00ff87">Scan History</div>
-      <div class="section-desc" id="hist-desc">0 ITEMS · 0.00 kg CO₂ OFFSET</div>
-      <div class="filter-row" id="filter-row"></div>
-      <div id="hist-list"></div>
+    <div class="equiv-grid" id="equiv-grid" style="display:none"></div>
+    <div class="stats-grid" id="stats-grid"></div>
+    <div class="chart-box" id="chart-box" style="display:none">
+      <div class="section-micro" style="margin-bottom:14px">CATEGORY BREAKDOWN</div>
+      <div class="chart-canvas-wrap"><canvas id="pie-canvas"></canvas></div>
+      <div class="chart-legend" id="chart-legend"></div>
     </div>
-
-    <!-- IMPACT TAB -->
-    <div id="tab-impact" class="tab">
-      <div class="section-title" style="color:#00ff87">Your Impact</div>
-      <div class="section-desc">PERSONAL ENVIRONMENTAL FOOTPRINT</div>
-      <div class="co2-hero">
-        <div class="co2-micro">TOTAL CO₂ OFFSET</div>
-        <div class="co2-big" id="impact-co2">0.00</div>
-        <div class="co2-unit">kilograms of CO₂ equivalent</div>
-      </div>
-      <div class="equiv-grid" id="equiv-grid" style="display:none"></div>
-      <div class="stats-grid" id="stats-grid"></div>
-      <div class="chart-box" id="chart-box" style="display:none">
-        <div class="section-micro" style="margin-bottom:14px">CATEGORY BREAKDOWN</div>
-        <div class="chart-canvas-wrap"><canvas id="pie-canvas"></canvas></div>
-        <div class="chart-legend" id="chart-legend"></div>
-      </div>
-      <div class="rank-box">
-        <div class="rank-micro">ECO RANK</div>
-        <div class="rank-title" id="rank-title" style="color:#00ff87">🌱 Seedling</div>
-        <div class="rank-next" id="rank-next">50 pts to 🌿 Sprout</div>
-        <div class="rank-bar-wrap"><div class="rank-bar-fill" id="rank-bar" style="width:0%;background:linear-gradient(90deg,rgba(0,255,135,.5),#00ff87);box-shadow:0 0 10px rgba(0,255,135,.4)"></div></div>
-        <div class="rank-chips" id="rank-chips"></div>
-      </div>
+    <div class="rank-box">
+      <div class="rank-micro">ECO RANK</div>
+      <div class="rank-title" id="rank-title" style="color:#00ff87">🌱 Seedling</div>
+      <div class="rank-next" id="rank-next">50 pts to 🌿 Sprout</div>
+      <div class="rank-bar-wrap"><div class="rank-bar-fill" id="rank-bar" style="width:0%;background:linear-gradient(90deg,rgba(0,255,135,.5),#00ff87);box-shadow:0 0 10px rgba(0,255,135,.4)"></div></div>
+      <div class="rank-chips" id="rank-chips"></div>
     </div>
-
-    <!-- GUIDE TAB -->
-    <div id="tab-guide" class="tab">
-      <div class="section-title" style="color:#00ff87">Waste Guide</div>
-      <div class="section-desc">CORRECT DISPOSAL FOR EVERY CATEGORY</div>
-      <div id="guide-list"></div>
-    </div>
-
-  </div><!-- /content -->
-
-  <!-- BOTTOM NAV -->
-  <div id="bottom-nav">
-    <button class="nav-btn active" data-tab="scan"><span class="nav-icon">🔍</span><span class="nav-label">Scan</span></button>
-    <button class="nav-btn" data-tab="history"><span class="nav-icon">📋</span><span class="nav-label">History</span></button>
-    <button class="nav-btn" data-tab="impact"><span class="nav-icon">🌍</span><span class="nav-label">Impact</span></button>
-    <button class="nav-btn" data-tab="guide"><span class="nav-icon">📖</span><span class="nav-label">Guide</span></button>
   </div>
-</div><!-- /app -->
+
+  <!-- GUIDE TAB -->
+  <div id="tab-guide" class="tab">
+    <div class="section-title" style="color:#00ff87">Waste Guide</div>
+    <div class="section-desc">CORRECT DISPOSAL FOR EVERY CATEGORY</div>
+    <div id="guide-list"></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div id="bottom-nav">
+  <button class="nav-btn active" data-tab="scan"><span class="nav-icon">🔍</span><span class="nav-label">Scan</span></button>
+  <button class="nav-btn" data-tab="history"><span class="nav-icon">📋</span><span class="nav-label">History</span></button>
+  <button class="nav-btn" data-tab="impact"><span class="nav-icon">🌍</span><span class="nav-label">Impact</span></button>
+  <button class="nav-btn" data-tab="guide"><span class="nav-icon">📖</span><span class="nav-label">Guide</span></button>
+</div>
+</div>
 
 <!-- CAMERA MODAL -->
 <div id="cam-modal">
@@ -400,38 +344,18 @@ img{display:block;max-width:100%}
   </div>
 </div>
 
-
-<!-- API KEY MODAL -->
-<div id="key-modal" style="position:fixed;inset:0;background:rgba(2,5,3,.97);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px">
-  <div style="background:#080d09;border:1px solid rgba(0,255,135,.3);border-radius:22px;padding:28px 24px;max-width:380px;width:100%;box-shadow:0 0 60px rgba(0,255,135,.1)">
-    <div style="font-family:'Chakra Petch';font-weight:700;font-size:1.1rem;color:#00ff87;margin-bottom:6px">⚙️ Anthropic API Key</div>
-    <div style="font-size:.75rem;color:#3a5a40;margin-bottom:16px;line-height:1.6">Required to run AI classification.<br>Get yours free at <a href="https://console.anthropic.com" target="_blank" style="color:#00ff87">console.anthropic.com</a><br><span style="color:#2a4a30;font-size:.68rem">Your key is stored only in your browser (localStorage) and never sent anywhere except Anthropic's API.</span></div>
-    <input id="key-input" type="password" placeholder="sk-ant-api03-..." style="width:100%;background:#0a1210;border:1px solid rgba(0,255,135,.3);border-radius:12px;padding:12px 14px;font-size:.85rem;color:#d8e8dc;font-family:'JetBrains Mono';margin-bottom:12px;outline:none"/>
-    <div id="key-status" style="font-size:.72rem;margin-bottom:12px;min-height:18px"></div>
-    <div style="display:flex;gap:9px">
-      <button id="key-save-btn" style="flex:2;background:#00ff87;color:#02050a;font-family:'Chakra Petch';font-weight:700;font-size:.88rem;padding:12px;border-radius:12px;box-shadow:0 4px 20px rgba(0,255,135,.4)">Save &amp; Continue</button>
-      <button id="key-cancel-btn" style="flex:1;background:#0a1210;border:1px solid #182018;border-radius:12px;padding:12px;color:#3a5840;font-family:'Chakra Petch';font-weight:600;font-size:.82rem">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST AREA -->
 <div id="toast-area"></div>
-<!-- POINTS POP -->
 <div id="pts-pop"></div>
 
 <script>
 'use strict';
 
-/* ─────────────────────────────────────────
-   DATA
-───────────────────────────────────────── */
 const CAT = {
   recycling:{ color:'#00ff87',glow:'rgba(0,255,135,.2)',bg:'rgba(0,255,135,.07)',border:'rgba(0,255,135,.28)',emoji:'♻️',label:'Recycling',bin:'Blue / Yellow bin',tip:'Recycling saves up to 95% of the material\'s original energy.' },
-  organic:  { color:'#aaff00',glow:'rgba(170,255,0,.2)', bg:'rgba(170,255,0,.07)', border:'rgba(170,255,0,.28)', emoji:'🌿',label:'Organic',  bin:'Green / Compost bin',tip:'Composting diverts methane-producing waste from landfill.' },
+  organic:  { color:'#aaff00',glow:'rgba(170,255,0,.2)', bg:'rgba(170,255,0,.07)', border:'rgba(170,255,0,.28)', emoji:'🌿',label:'Organic', bin:'Green / Compost bin',tip:'Composting diverts methane-producing waste from landfill.' },
   'e-waste':{ color:'#7c83ff',glow:'rgba(124,131,255,.2)',bg:'rgba(124,131,255,.07)',border:'rgba(124,131,255,.28)',emoji:'⚡',label:'E-Waste', bin:'E-waste drop-off point',tip:'One phone contains enough gold, silver & copper to be worth recycling.' },
-  metal:    { color:'#ffcc00',glow:'rgba(255,204,0,.2)',  bg:'rgba(255,204,0,.07)',  border:'rgba(255,204,0,.28)',  emoji:'🔩',label:'Metal',   bin:'Recycling / Scrap yard',tip:'Aluminum cans are back on shelves within 60 days of recycling.' },
-  glass:    { color:'#00e5ff',glow:'rgba(0,229,255,.2)',  bg:'rgba(0,229,255,.07)',  border:'rgba(0,229,255,.28)',  emoji:'💎',label:'Glass',   bin:'Glass bank · rinse first',tip:'Glass is 100% recyclable and can be recycled endlessly.' },
+  metal:    { color:'#ffcc00',glow:'rgba(255,204,0,.2)', bg:'rgba(255,204,0,.07)', border:'rgba(255,204,0,.28)', emoji:'🔩',label:'Metal', bin:'Recycling / Scrap yard',tip:'Aluminum cans are back on shelves within 60 days of recycling.' },
+  glass:    { color:'#00e5ff',glow:'rgba(0,229,255,.2)', bg:'rgba(0,229,255,.07)', border:'rgba(0,229,255,.28)', emoji:'💎',label:'Glass', bin:'Glass bank · rinse first',tip:'Glass is 100% recyclable and can be recycled endlessly.' },
   landfill: { color:'#ff6b6b',glow:'rgba(255,107,107,.2)',bg:'rgba(255,107,107,.07)',border:'rgba(255,107,107,.28)',emoji:'🗑️',label:'Landfill',bin:'Black / Grey bin',tip:'Consider if this item could be repaired or donated instead.' },
   hazardous:{ color:'#ff8c42',glow:'rgba(255,140,66,.2)', bg:'rgba(255,140,66,.07)', border:'rgba(255,140,66,.28)', emoji:'☣️',label:'Hazardous',bin:'HHW facility drop-off',tip:'Never put hazardous waste in regular bins — it contaminates soil.' },
 };
@@ -455,9 +379,7 @@ const ECO_TIPS = [
 ];
 
 const AI_PROMPT = `You are EcoSort AI — an expert waste classification engine with deep knowledge of materials science, recycling chemistry, and environmental LCA.
-
 Analyze the image and classify the waste item. Respond with ONLY a valid JSON object — no markdown, no extra text:
-
 {
   "itemName": "Concise item name (max 5 words)",
   "subtitle": "Technical material identifier (e.g. Polyethylene Terephthalate #1)",
@@ -478,15 +400,11 @@ Analyze the image and classify the waste item. Respond with ONLY a valid JSON ob
     "carbonEquivalent": "Driving 0.6 km"
   }
 }
-
 Confidence: 0.85+ clear item; 0.65–0.84 some ambiguity; below 0.4 → {"error":"Low confidence — retake in better lighting."}.
 If no waste item: {"error":"No waste item detected. Point camera at a specific item."}.`;
 
-/* ─────────────────────────────────────────
-   STATE
-───────────────────────────────────────── */
 let state = {
-  phase: 'idle',    // idle | preview | scanning | result | error
+  phase: 'idle',
   imgData: null,
   result: null,
   history: [],
@@ -496,16 +414,13 @@ let state = {
   userName: 'EcoHero',
   voiceOn: false,
   hFilter: 'all',
-  expandOpen: false,
   scanBoxInterval: null,
   hudInterval: null,
 };
 
-/* ─────────────────────────────────────────
-   STORAGE
-───────────────────────────────────────── */
+// Storage helpers
 const store = {
-  get(k){ try{ const v=localStorage.getItem(k); return v; }catch{ return null; } },
+  get(k){ try{ return localStorage.getItem(k); }catch{ return null; } },
   set(k,v){ try{ localStorage.setItem(k,v); }catch{} },
 };
 
@@ -523,30 +438,29 @@ function saveStorage(){
   store.set('es4-c', String(state.co2));
 }
 
-/* ─────────────────────────────────────────
-   TICKER
-───────────────────────────────────────── */
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
 function initTicker(){
-  const t = [...ECO_TIPS,...ECO_TIPS].join('   ⬥   ');
+  const t = [...ECO_TIPS,...ECO_TIPS].join(' ⬥ ');
   document.getElementById('ticker-inner').textContent = t;
 }
 
-/* ─────────────────────────────────────────
-   NAVIGATION
-───────────────────────────────────────── */
 function switchTab(id){
   document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(btn=>{ if(btn.dataset.tab===id) btn.classList.add('active'); });
   if(id==='history') renderHistory();
-  if(id==='impact')  renderImpact();
-  if(id==='guide')   renderGuide();
+  if(id==='impact') renderImpact();
+  if(id==='guide') renderGuide();
 }
 
-/* ─────────────────────────────────────────
-   HEADER
-───────────────────────────────────────── */
+function curLevel(){
+  let lv=LEVELS[0];
+  for(const l of LEVELS){ if(state.points>=l.min) lv=l; }
+  return lv;
+}
+
 function updateHeader(){
   document.getElementById('hdr-pts').textContent = state.points;
   document.getElementById('name-btn').textContent = curLevel().label.split(' ')[0]+' '+state.userName;
@@ -561,7 +475,6 @@ function setAccent(col){
   document.getElementById('logo-text').style.textShadow = `0 0 18px ${col}50`;
   document.getElementById('logo-icon').style.borderColor = col+'40';
   document.getElementById('logo-icon').style.boxShadow = `0 0 20px ${col}28`;
-  // bg glow
   if(state.result){
     const t=CAT[state.result.category];
     document.getElementById('bg-glow').style.background = `radial-gradient(ellipse 90% 55% at 50% 0%, ${t?.glow||'rgba(0,255,135,.15)'} 0%, transparent 65%)`;
@@ -570,9 +483,62 @@ function setAccent(col){
   }
 }
 
-/* ─────────────────────────────────────────
-   FILE LOAD
-───────────────────────────────────────── */
+function showToast(emoji, msg){
+  const area=document.getElementById('toast-area');
+  const el=document.createElement('div'); el.className='toast';
+  el.innerHTML=`<span>${emoji}</span><span class="toast-msg">${esc(msg)}</span>`;
+  area.appendChild(el);
+  setTimeout(()=>{ try{area.removeChild(el);}catch{} }, 3200);
+}
+
+function showPtsPop(pts){
+  const el=document.getElementById('pts-pop');
+  el.textContent='+'+pts+' pts';
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 1600);
+}
+
+function speak(text){
+  if(!state.voiceOn || !window.speechSynthesis) return;
+  const u=new SpeechSynthesisUtterance(text);
+  u.rate=0.95; u.pitch=1.05;
+  window.speechSynthesis.speak(u);
+}
+
+function fireConfetti(){
+  const cv=document.getElementById('confetti-canvas');
+  const ctx=cv.getContext('2d');
+  cv.width=window.innerWidth; cv.height=window.innerHeight;
+  const pieces=Array.from({length:60},()=>({
+    x:Math.random()*cv.width, y:-10,
+    r:3+Math.random()*5, vx:(Math.random()-.5)*4,
+    vy:3+Math.random()*5, rot:Math.random()*360,
+    color:['#00ff87','#aaff00','#ffcc00','#00e5ff','#7c83ff'][Math.floor(Math.random()*5)],
+    alpha:1,
+  }));
+  let frame;
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    let alive=false;
+    for(const p of pieces){
+      p.x+=p.vx; p.y+=p.vy; p.rot+=3; p.alpha-=0.012;
+      if(p.y<cv.height&&p.alpha>0) alive=true;
+      ctx.save(); ctx.globalAlpha=Math.max(0,p.alpha);
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);
+      ctx.restore();
+    }
+    if(alive) frame=requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,cv.width,cv.height);
+  }
+  if(frame) cancelAnimationFrame(frame);
+  draw();
+}
+
+// File loading
 function loadFile(file){
   if(!file||!file.type.startsWith('image/')) return;
   const r=new FileReader();
@@ -580,161 +546,119 @@ function loadFile(file){
   r.readAsDataURL(file);
 }
 
-/* ─────────────────────────────────────────
-   CAMERA (FIXED)
-───────────────────────────────────────── */
-let cameraStream = null;
-
+// Camera
+let cameraStream=null;
 async function openCamera(){
   try {
-    const s = await navigator.mediaDevices.getUserMedia({
-      video:{ facingMode:{ideal:'environment'}, width:{ideal:1920}, height:{ideal:1080} }
-    });
-    cameraStream = s;
-    const vid = document.getElementById('cam-video');
-    vid.srcObject = s;
-    vid.play().catch(()=>{});
+    const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}});
+    cameraStream=s;
+    const vid=document.getElementById('cam-video');
+    vid.srcObject=s; vid.play().catch(()=>{});
     document.getElementById('cam-modal').classList.add('open');
   } catch(e){
-    // fallback: native file input with capture
-    const inp = document.createElement('input');
+    const inp=document.createElement('input');
     inp.type='file'; inp.accept='image/*'; inp.capture='environment';
     inp.onchange=ev=>{ if(ev.target.files?.[0]) loadFile(ev.target.files[0]); };
     document.body.appendChild(inp); inp.click();
-    setTimeout(()=>{ try{document.body.removeChild(inp);}catch{} }, 2000);
+    setTimeout(()=>{ try{document.body.removeChild(inp);}catch{} },2000);
   }
 }
 
 function capturePhoto(){
-  const vid = document.getElementById('cam-video');
+  const vid=document.getElementById('cam-video');
   if(!vid.videoWidth){ closeCamera(); return; }
-  const cv = document.createElement('canvas');
+  const cv=document.createElement('canvas');
   cv.width=vid.videoWidth; cv.height=vid.videoHeight;
   cv.getContext('2d').drawImage(vid,0,0);
-  state.imgData = cv.toDataURL('image/jpeg',.88);
-  showPhase('preview');
-  closeCamera();
+  state.imgData=cv.toDataURL('image/jpeg',.88);
+  showPhase('preview'); closeCamera();
 }
 
 function closeCamera(){
   if(cameraStream){ cameraStream.getTracks().forEach(t=>t.stop()); cameraStream=null; }
-  document.getElementById('cam-video').srcObject = null;
+  document.getElementById('cam-video').srcObject=null;
   document.getElementById('cam-modal').classList.remove('open');
 }
 
-/* ─────────────────────────────────────────
-   PHASES
-───────────────────────────────────────── */
+// Phases
 function showPhase(ph){
-  state.phase = ph;
-  if(ph==='idle'||ph==='preview') state.result = null;
-  if(ph==='idle'||ph==='preview') state.expandOpen = false;
-
-  const idle  = document.getElementById('idle-state');
-  const scan  = document.getElementById('scan-state');
-  const pbtns = document.getElementById('preview-btns');
-  const skel  = document.getElementById('skeleton');
-  const errB  = document.getElementById('error-box');
-  const resC  = document.getElementById('result-card');
-  const over  = document.getElementById('scan-overlay');
-  const imgO  = document.getElementById('img-overlay');
-  const imgWrap = document.getElementById('img-wrap');
-
-  idle.style.display  = ph==='idle'    ? 'block' : 'none';
-  scan.style.display  = ph==='idle'    ? 'none'  : 'block';
-  pbtns.style.display = ph==='preview' ? 'flex'  : 'none';
-  skel.style.display  = ph==='scanning'? 'block' : 'none';
-  errB.style.display  = ph==='error'   ? 'block' : 'none';
-  resC.style.display  = ph==='result'  ? 'block' : 'none';
-  imgO.style.display  = ph==='result'  ? 'flex'  : 'none';
-
-  if(ph!=='idle'){
-    document.getElementById('preview-img').src = state.imgData;
-    document.getElementById('preview-img').style.filter = ph==='scanning'?'brightness(.65)':'none';
-  }
-
-  if(ph==='scanning'){
-    over.classList.add('active');
-    startScanAnim();
-  } else {
-    over.classList.remove('active');
-    stopScanAnim();
-  }
-
-  if(ph==='idle'){
-    setAccent('#00ff87');
-    document.getElementById('bg-glow').style.background='none';
-    renderRecentScans();
-  }
+  state.phase=ph;
+  if(ph==='idle'||ph==='preview'){ state.result=null; }
+  const idle=document.getElementById('idle-state');
+  const scan=document.getElementById('scan-state');
+  const pbtns=document.getElementById('preview-btns');
+  const skel=document.getElementById('skeleton');
+  const errB=document.getElementById('error-box');
+  const resC=document.getElementById('result-card');
+  const over=document.getElementById('scan-overlay');
+  const imgO=document.getElementById('img-overlay');
+  idle.style.display=ph==='idle'?'block':'none';
+  scan.style.display=ph==='idle'?'none':'block';
+  pbtns.style.display=ph==='preview'?'flex':'none';
+  skel.style.display=ph==='scanning'?'block':'none';
+  errB.style.display=ph==='error'?'block':'none';
+  resC.style.display=ph==='result'?'block':'none';
+  imgO.style.display=ph==='result'?'flex':'none';
+  if(ph!=='idle') document.getElementById('preview-img').src=state.imgData;
+  document.getElementById('preview-img').style.filter=ph==='scanning'?'brightness(.65)':'none';
+  if(ph==='scanning'){ over.classList.add('active'); startScanAnim(); }
+  else { over.classList.remove('active'); stopScanAnim(); }
+  if(ph==='idle'){ setAccent('#00ff87'); document.getElementById('bg-glow').style.background='none'; renderRecentScans(); }
 }
 
-/* ─────────────────────────────────────────
-   SCAN ANIMATION
-───────────────────────────────────────── */
-const HUD_LABELS = ['NEURAL·NET','MATERIAL·ID','CARBON·CALC','HAZARD·CHK','VISION·AI','RECYCLE·OP'];
-let hudIdx = 0;
+const HUD_LABELS=['NEURAL·NET','MATERIAL·ID','CARBON·CALC','HAZARD·CHK','VISION·AI','RECYCLE·OP'];
+let hudIdx=0;
 
 function startScanAnim(){
-  hudIdx = 0;
-  state.hudInterval = setInterval(()=>{
+  hudIdx=0;
+  state.hudInterval=setInterval(()=>{
     hudIdx=(hudIdx+1)%HUD_LABELS.length;
     const el=document.getElementById('hud-label');
     if(el) el.textContent='◈ '+HUD_LABELS[hudIdx];
-  }, 380);
-
-  // bars
+  },380);
   const bars=document.getElementById('hud-bars');
   if(bars){ bars.innerHTML=''; [8,5,12,6,9,7,11].forEach(h=>{ const d=document.createElement('div'); d.className='so-bar'; d.style.height=h+'px'; bars.appendChild(d); }); }
-
-  // detection boxes
   const lbs=['analyzing…','plastic?','material?','organic?','waste?','scanning…','glass?','metal?'];
-  state.scanBoxInterval = setInterval(()=>{
+  state.scanBoxInterval=setInterval(()=>{
     const wrap=document.getElementById('det-boxes'); if(!wrap) return;
     wrap.innerHTML='';
     const n=Math.floor(Math.random()*3)+1;
     for(let i=0;i<n;i++){
       const bx=document.createElement('div'); bx.className='det-box';
-      const x=5+Math.random()*55, y=5+Math.random()*55, w=15+Math.random()*35, h=13+Math.random()*28;
+      const x=5+Math.random()*55,y=5+Math.random()*55,w=15+Math.random()*35,h=13+Math.random()*28;
       bx.style.left=x+'%'; bx.style.top=y+'%'; bx.style.width=w+'%'; bx.style.height=h+'%';
       const lbl=document.createElement('span'); lbl.className='det-label';
       lbl.textContent=lbs[Math.floor(Math.random()*lbs.length)]+' '+(0.3+Math.random()*.55).toFixed(2);
       bx.appendChild(lbl); wrap.appendChild(bx);
     }
-  }, 520);
+  },520);
 }
 
 function stopScanAnim(){
-  clearInterval(state.hudInterval);
-  clearInterval(state.scanBoxInterval);
+  clearInterval(state.hudInterval); clearInterval(state.scanBoxInterval);
   const wrap=document.getElementById('det-boxes'); if(wrap) wrap.innerHTML='';
 }
 
-/* ─────────────────────────────────────────
-   CLASSIFY
-───────────────────────────────────────── */
+// ── KEY FIX: classify() calls Anthropic API without requiring user's own API key ──
 async function classify(){
   if(!state.imgData) return;
   showPhase('scanning');
-
   try {
-    const base64 = state.imgData.split(',')[1];
-    const mime   = state.imgData.split(';')[0].split(':')[1];
+    const base64=state.imgData.split(',')[1];
+    const mime=state.imgData.split(';')[0].split(':')[1];
 
-    const apiKey = (store.get('es4-key')||'').trim();
-    if(!apiKey){ showError('No API key set — tap ⚙️ in the header to enter your Anthropic API key.'); return; }
-
-    const res = await fetch('https://api.anthropic.com/v1/messages',{
+    // No x-api-key header needed — Claude.ai handles auth automatically
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
-        'x-api-key': apiKey,
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true',
       },
-      body: JSON.stringify({
+      body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
-        system: AI_PROMPT,
+        system:AI_PROMPT,
         messages:[{role:'user',content:[
           {type:'image',source:{type:'base64',media_type:mime,data:base64}},
           {type:'text',text:'Classify this waste item. Return ONLY JSON.'},
@@ -742,42 +666,32 @@ async function classify(){
       }),
     });
 
-    const data = await res.json();
-    // Handle API-level errors (bad key, rate limit, billing, etc.)
+    const data=await res.json();
     if(data.error){
-      const apiErr = data.error.message || JSON.stringify(data.error);
-      if(apiErr.includes('authentication') || apiErr.includes('API key') || apiErr.includes('invalid x-api-key')){
-        showError('Invalid API key — tap ⚙️ and re-enter your key from console.anthropic.com');
-      } else if(apiErr.includes('rate')){
-        showError('Rate limited — please wait a moment and retry.');
-      } else if(apiErr.includes('credit') || apiErr.includes('billing')){
-        showError('Billing issue — check your Anthropic account at console.anthropic.com');
-      } else {
-        showError('API error: ' + apiErr.slice(0,120));
-      }
+      showError('API error: '+(data.error.message||JSON.stringify(data.error)).slice(0,120));
       return;
     }
-    const raw  = (data.content?.[0]?.text||'').trim().replace(/```json|```/g,'').trim();
-    if(!raw){ showError('Empty response from AI — please retry.'); return; }
+
+    const raw=(data.content?.[0]?.text||'').trim().replace(/```json|```/g,'').trim();
+    if(!raw){ showError('Empty response — please retry.'); return; }
+
     let parsed;
-    try { parsed = JSON.parse(raw); }
-    catch(je){ showError('Could not parse AI response. Please retry.'); console.error('Parse error:', raw); return; }
+    try{ parsed=JSON.parse(raw); }
+    catch(je){ showError('Could not parse AI response. Please retry.'); return; }
 
     if(parsed.error){ showError(parsed.error); return; }
 
-    const t = CAT[parsed.category];
+    const t=CAT[parsed.category];
     if(t) setAccent(t.color);
+    state.result=parsed;
 
-    state.result = parsed;
-    const np = state.points+(parsed.points||10);
-    const nc = state.co2+Math.abs(parsed.co2Delta||0);
-    state.points=np; state.co2=nc;
+    state.points+=parsed.points||10;
+    state.co2+=Math.abs(parsed.co2Delta||0);
 
-    const scan = {id:Date.now(),itemName:parsed.itemName,category:parsed.category,points:parsed.points||10,co2Delta:Math.abs(parsed.co2Delta||0),confidence:parsed.confidence||0,ts:new Date().toISOString()};
-    state.history = [scan,...state.history].slice(0,100);
+    const scan={id:Date.now(),itemName:parsed.itemName,category:parsed.category,points:parsed.points||10,co2Delta:Math.abs(parsed.co2Delta||0),confidence:parsed.confidence||0,ts:new Date().toISOString()};
+    state.history=[scan,...state.history].slice(0,100);
     saveStorage();
 
-    // celebrations
     const MILES={1:'First scan! Welcome!',5:'5 scans streak!',10:'Eco Warrior!',25:'Planet Guardian!',50:'Champion!'};
     if(MILES[state.history.length]) showToast('🎉',MILES[state.history.length]);
     else showToast(t?.emoji||'✅',`${parsed.itemName} classified!`);
@@ -786,30 +700,23 @@ async function classify(){
     showPtsPop(parsed.points||10);
     speak(`${parsed.itemName}. ${t?.label||''} category. ${parsed.bin||''}.`);
 
-    // render result
     renderResult(parsed);
     showPhase('result');
 
-    // overlay badge
     const ob=document.getElementById('overlay-badge');
     ob.innerHTML=badgeHTML(parsed.category,false);
     const oc=document.getElementById('overlay-conf');
     oc.textContent=Math.round((parsed.confidence||0)*100)+'% conf';
     oc.style.color=t?.color||'#00ff87';
-
-    // img border
     document.getElementById('img-wrap').style.borderColor=t?.border||'#1a3020';
-
-    // update header
     updateHeader();
 
   } catch(e){
-    console.error('EcoSort classify error:', e);
-    let msg = 'Classification failed.';
-    if(e instanceof SyntaxError) msg = 'AI returned unexpected response. Please retry.';
-    else if(e.message && e.message.includes('fetch')) msg = 'Network error — check your internet connection.';
-    else if(e.message) msg = e.message;
-    showError(msg + '  (See browser console for details)');
+    console.error('EcoSort classify error:',e);
+    let msg='Classification failed.';
+    if(e.message&&e.message.includes('fetch')) msg='Network error — check your connection.';
+    else if(e.message) msg=e.message;
+    showError(msg);
   }
 }
 
@@ -826,14 +733,10 @@ function showError(msg){
 
 function resetScan(){
   state.imgData=null; state.result=null; state.phase='idle';
-  setAccent('#00ff87');
-  showPhase('idle');
+  setAccent('#00ff87'); showPhase('idle');
 }
 
-/* ─────────────────────────────────────────
-   RENDER RESULT CARD
-───────────────────────────────────────── */
-function badgeHTML(cat, lg){
+function badgeHTML(cat,lg){
   const t=CAT[cat]||CAT.landfill;
   return `<span style="display:inline-flex;align-items:center;gap:${lg?8:5}px;background:${t.bg};border:1px solid ${t.border};color:${t.color};border-radius:99px;padding:${lg?'8px 18px':'4px 10px'};font-size:${lg?'.83rem':'.68rem'};font-family:'Chakra Petch';font-weight:600;letter-spacing:.06em;text-transform:uppercase">${t.emoji} ${t.label}</span>`;
 }
@@ -843,24 +746,13 @@ function renderResult(r){
   const good=['recycling','organic','glass','metal'].includes(r.category);
   const conf=Math.round((r.confidence||0)*100);
   const confCol=conf>=85?'#00ff87':conf>=65?'#ffcc00':'#ff6b6b';
-
-  // animated counters
-  let co2Anim=0, ptsAnim=0;
-  const co2Target=Math.abs(r.co2Delta||0);
-  const ptsTarget=r.points||10;
-
-  let co2El, ptsEl;
-
-  const html = `
+  const html=`
 <div class="result-wrap" style="--cat-border:${t.border};--cat-border-dim:${t.border}40;--cat-glow:${t.glow};--cat-color:${t.color}">
   <div class="result-hero" style="background:linear-gradient(140deg,${t.bg},transparent)">
     <div class="result-label" style="color:${t.color}">ITEM CLASSIFIED ${good?'🎉':''}</div>
     <div class="result-name">${esc(r.itemName)}</div>
     <div class="result-sub">${esc(r.subtitle||'')}</div>
-    <div class="result-badges">
-      ${badgeHTML(r.category,true)}
-      <span class="badge-sub">${esc(r.badgeText||'')}</span>
-    </div>
+    <div class="result-badges">${badgeHTML(r.category,true)}<span class="badge-sub">${esc(r.badgeText||'')}</span></div>
   </div>
   <div class="result-stats">
     <div class="stat-cell">
@@ -889,37 +781,28 @@ function renderResult(r){
     <div class="tip-box">💡 ${esc(r.tip||t.tip)}</div>
   </div>
   <button class="expand-btn" onclick="toggleExpand(this)">
-    <span>📊 Material Breakdown</span>
-    <span class="expand-arrow">▼</span>
+    <span>📊 Material Breakdown</span><span class="expand-arrow">▼</span>
   </button>
   <div class="expand-content" id="expand-inner">
-    ${r.materialInfo?.recyclableComponents?.length
-      ? `<div style="font-size:.58rem;color:#1a5030;font-family:'JetBrains Mono';letter-spacing:.1em;margin:12px 0 7px">♻ RECYCLABLE</div>
-         <div class="tag-row">${r.materialInfo.recyclableComponents.map(c=>`<span class="tag-green">${esc(c)}</span>`).join('')}</div>` : ''}
-    ${r.materialInfo?.nonRecyclable?.length
-      ? `<div style="font-size:.58rem;color:#6a1a1a;font-family:'JetBrains Mono';letter-spacing:.1em;margin-bottom:7px">✕ NON-RECYCLABLE</div>
-         <div class="tag-row">${r.materialInfo.nonRecyclable.map(c=>`<span class="tag-red">${esc(c)}</span>`).join('')}</div>` : ''}
+    ${r.materialInfo?.recyclableComponents?.length?`<div style="font-size:.58rem;color:#1a5030;font-family:'JetBrains Mono';letter-spacing:.1em;margin:12px 0 7px">♻ RECYCLABLE</div><div class="tag-row">${r.materialInfo.recyclableComponents.map(c=>`<span class="tag-green">${esc(c)}</span>`).join('')}</div>`:''}
+    ${r.materialInfo?.nonRecyclable?.length?`<div style="font-size:.58rem;color:#6a1a1a;font-family:'JetBrains Mono';letter-spacing:.1em;margin-bottom:7px">✕ NON-RECYCLABLE</div><div class="tag-row">${r.materialInfo.nonRecyclable.map(c=>`<span class="tag-red">${esc(c)}</span>`).join('')}</div>`:''}
     <div class="mini-grid">
       <div class="mini-card"><div class="mini-label">DECOMPOSITION</div><div class="mini-val">${esc(r.materialInfo?.decompositionTime||'—')}</div></div>
       <div class="mini-card"><div class="mini-label">RECYCLING RATE</div><div class="mini-val">${esc(r.materialInfo?.recyclingRate||'—')}</div></div>
     </div>
-    ${r.alternatives?.length ? `<div style="font-size:.58rem;color:#2a4a30;font-family:'JetBrains Mono';letter-spacing:.1em;margin-bottom:7px">ALTERNATIVES</div>${r.alternatives.map(a=>`<div class="alt-item">→ ${esc(a)}</div>`).join('')}` : ''}
+    ${r.alternatives?.length?`<div style="font-size:.58rem;color:#2a4a30;font-family:'JetBrains Mono';letter-spacing:.1em;margin-bottom:7px">ALTERNATIVES</div>${r.alternatives.map(a=>`<div class="alt-item">→ ${esc(a)}</div>`).join('')}`:''}
   </div>
   <div class="result-cta"><button class="btn-outline" onclick="resetScan()">＋ SCAN ANOTHER ITEM</button></div>
 </div>`;
-
-  document.getElementById('result-card').innerHTML = html;
-
-  // animate bar + counters after render
+  document.getElementById('result-card').innerHTML=html;
   requestAnimationFrame(()=>{
     const bar=document.getElementById('conf-bar');
-    if(bar) setTimeout(()=>bar.style.width=conf+'%', 50);
-
-    // count up CO2
-    co2El=document.getElementById('res-co2');
-    ptsEl=document.getElementById('res-pts');
-    let cur=0, inc=co2Target/60;
-    let pcur=0, pinc=ptsTarget/60;
+    if(bar) setTimeout(()=>bar.style.width=conf+'%',50);
+    const co2El=document.getElementById('res-co2');
+    const ptsEl=document.getElementById('res-pts');
+    const co2Target=Math.abs(r.co2Delta||0), ptsTarget=r.points||10;
+    let cur=0, pcur=0;
+    const inc=co2Target/60, pinc=ptsTarget/60;
     const t2=setInterval(()=>{
       cur+=inc; pcur+=pinc;
       if(cur>=co2Target){ cur=co2Target; clearInterval(t2); }
@@ -933,16 +816,10 @@ function renderResult(r){
 function toggleExpand(btn){
   const inner=document.getElementById('expand-inner');
   const arrow=btn.querySelector('.expand-arrow');
-  if(inner.classList.contains('open')){
-    inner.classList.remove('open'); inner.style.display='none'; arrow.style.transform='none';
-  } else {
-    inner.classList.add('open'); inner.style.display='block'; arrow.style.transform='rotate(180deg)';
-  }
+  if(inner.classList.contains('open')){ inner.classList.remove('open'); inner.style.display='none'; arrow.style.transform='none'; }
+  else { inner.classList.add('open'); inner.style.display='block'; arrow.style.transform='rotate(180deg)'; }
 }
 
-/* ─────────────────────────────────────────
-   RECENT SCANS (scan tab)
-───────────────────────────────────────── */
 function renderRecentScans(){
   const wrap=document.getElementById('recent-wrap');
   const list=document.getElementById('recent-list');
@@ -958,26 +835,20 @@ function renderRecentScans(){
   }).join('');
 }
 
-/* ─────────────────────────────────────────
-   HISTORY TAB
-───────────────────────────────────────── */
-function renderHistory(){
-  const { history, hFilter, accent } = state;
-  document.getElementById('hist-title').style.color = accent;
-  document.getElementById('hist-desc').textContent = `${history.length} ITEMS · ${state.co2.toFixed(2)} kg CO₂ OFFSET`;
+function setHFilter(f){ state.hFilter=f; renderHistory(); }
 
-  // filters
+function renderHistory(){
+  const {history,hFilter,accent}=state;
+  document.getElementById('hist-title').style.color=accent;
+  document.getElementById('hist-desc').textContent=`${history.length} ITEMS · ${state.co2.toFixed(2)} kg CO₂ OFFSET`;
   const fr=document.getElementById('filter-row');
   const filters=[['all','All ✦'],['recycling','♻️'],['organic','🌿'],['e-waste','⚡'],['metal','🔩'],['glass','💎'],['landfill','🗑️'],['hazardous','☣️']];
   fr.innerHTML=filters.map(([k,l])=>{
-    const t=CAT[k];
-    const cnt=k==='all'?'':` <span style="opacity:.55">${history.filter(h=>h.category===k).length}</span>`;
+    const t=CAT[k]; const cnt=k==='all'?'':` <span style="opacity:.55">${history.filter(h=>h.category===k).length}</span>`;
     const isActive=hFilter===k;
     return `<button class="filter-btn${isActive?' active':''}" onclick="setHFilter('${k}')" style="${isActive&&t?`background:${t.bg};border-color:${t.border};color:${t.color}`:''}">${l}${cnt}</button>`;
   }).join('');
-
-  // list
-  const filtered = hFilter==='all'?history:history.filter(h=>h.category===hFilter);
+  const filtered=hFilter==='all'?history:history.filter(h=>h.category===hFilter);
   const hl=document.getElementById('hist-list');
   if(filtered.length===0){
     hl.innerHTML=`<div class="empty-state"><div class="empty-emoji">🌱</div><div class="empty-title">No scans yet</div><div class="empty-sub">Start scanning waste to build your history</div></div>`;
@@ -995,256 +866,97 @@ function renderHistory(){
       </div>
       <div style="text-align:right;flex-shrink:0">
         <div class="hist-pts">+${h.points}</div>
-        <div class="hist-co2">-${h.co2Delta.toFixed(3)}</div>
+        <div class="hist-co2">-${h.co2Delta.toFixed(3)} kg</div>
       </div>
     </div>`;
   }).join('');
 }
 
-function setHFilter(k){ state.hFilter=k; renderHistory(); }
-
-/* ─────────────────────────────────────────
-   IMPACT TAB
-───────────────────────────────────────── */
 function renderImpact(){
-  const { co2, points, history, accent } = state;
-  document.getElementById('impact-co2').textContent = co2.toFixed(2);
-  document.getElementById('impact-co2').style.color = accent;
+  document.getElementById('impact-co2').textContent=state.co2.toFixed(2);
+  const sg=document.getElementById('stats-grid');
+  sg.innerHTML=`
+    <div class="stat-box"><div class="stat-box-micro">TOTAL SCANS</div><div class="stat-box-val" style="color:#00ff87">${state.history.length}</div></div>
+    <div class="stat-box"><div class="stat-box-micro">TOTAL POINTS</div><div class="stat-box-val" style="color:#ffcc00">${state.points}</div></div>
+    <div class="stat-box"><div class="stat-box-micro">RECYCLED</div><div class="stat-box-val" style="color:#00ff87">${state.history.filter(h=>h.category==='recycling').length}</div></div>
+    <div class="stat-box"><div class="stat-box-micro">COMPOSTED</div><div class="stat-box-val" style="color:#aaff00">${state.history.filter(h=>h.category==='organic').length}</div></div>`;
 
-  // equivalents
-  const eg=document.getElementById('equiv-grid');
-  if(co2>0){
+  if(state.co2>0.1){
+    const eg=document.getElementById('equiv-grid');
     eg.style.display='grid';
-    eg.innerHTML=[{e:'🚗',l:'km not driven',f:4.76},{e:'🌳',l:'tree-days absorbed',f:16.79},{e:'📱',l:'phone charges',f:125},{e:'💡',l:'LED hours',f:10000}].map(q=>`
-      <div class="equiv-card">
-        <div class="equiv-emoji">${q.e}</div>
-        <div class="equiv-val" style="color:${accent}">${(co2*q.f).toFixed(1)}</div>
-        <div class="equiv-lbl">${q.l}</div>
-      </div>`).join('');
-  } else { eg.style.display='none'; }
+    const km=(state.co2/0.21).toFixed(1);
+    const trees=(state.co2/21.7).toFixed(2);
+    const phones=Math.round(state.co2/0.07);
+    eg.innerHTML=`
+      <div class="equiv-card"><div class="equiv-emoji">🚗</div><div class="equiv-val">${km} km</div><div class="equiv-lbl">driving avoided</div></div>
+      <div class="equiv-card"><div class="equiv-emoji">🌳</div><div class="equiv-val">${trees}</div><div class="equiv-lbl">trees saved equiv.</div></div>
+      <div class="equiv-card"><div class="equiv-emoji">📱</div><div class="equiv-val">${phones}</div><div class="equiv-lbl">phones recycled</div></div>
+      <div class="equiv-card"><div class="equiv-emoji">⚡</div><div class="equiv-val">${(state.co2*5.5).toFixed(0)} Wh</div><div class="equiv-lbl">energy saved</div></div>`;
+  }
 
-  // stats
-  const catCounts=Object.keys(CAT).map(k=>({k,n:history.filter(h=>h.category===k).length}));
-  const top=catCounts.filter(x=>x.n>0).sort((a,b)=>b.n-a.n)[0];
-  document.getElementById('stats-grid').innerHTML=[
-    ['Scans',history.length,'#00ff87'],['Points',points,'#ffcc00'],
-    ['Top Cat',top?CAT[top.k]?.emoji+' '+CAT[top.k]?.label:'—','#7c83ff'],
-    ['Streak','🔥 '+Math.min(history.length,7),'#ff8c42'],
-  ].map(([l,v,c])=>`<div class="stat-box"><div class="stat-box-micro">${l.toUpperCase()}</div><div class="stat-box-val" style="color:${c}">${v}</div></div>`).join('');
-
-  // pie chart
-  const chartData=Object.keys(CAT).map(k=>({name:CAT[k].label,value:history.filter(h=>h.category===k).length,color:CAT[k].color})).filter(d=>d.value>0);
-  const cb=document.getElementById('chart-box');
-  if(chartData.length>0){
-    cb.style.display='block';
-    drawPie(chartData);
-    document.getElementById('chart-legend').innerHTML=chartData.map(d=>`<div class="chart-legend-item"><div class="chart-dot" style="background:${d.color}"></div>${d.name}: ${d.value}</div>`).join('');
-  } else { cb.style.display='none'; }
-
-  // rank
-  const cur=curLevel(), nxt=nextLevel();
-  document.getElementById('rank-title').textContent=cur.label;
-  document.getElementById('rank-title').style.color=accent;
-  document.getElementById('rank-next').textContent=nxt?`${nxt.min-points} pts to ${nxt.label}`:'Maximum rank achieved!';
-  const pct=nxt?Math.round(((points-cur.min)/(nxt.min-cur.min))*100):100;
-  const rb=document.getElementById('rank-bar');
-  rb.style.background=`linear-gradient(90deg,${accent}50,${accent})`;
-  rb.style.boxShadow=`0 0 10px ${accent}40`;
-  setTimeout(()=>rb.style.width=pct+'%', 50);
-  document.getElementById('rank-chips').innerHTML=LEVELS.map(l=>{
-    const done=points>=l.min;
-    return `<div class="rank-chip" style="background:${done?accent+'10':'#080d09'};border:1px solid ${done?accent+'28':'#0c1610'};color:${done?accent:'#1e3820'};opacity:${done?1:.45}">${l.label}</div>`;
+  // Rank
+  const lv=curLevel();
+  const lvIdx=LEVELS.indexOf(lv);
+  const nextLv=LEVELS[lvIdx+1];
+  document.getElementById('rank-title').textContent=lv.label;
+  document.getElementById('rank-title').style.color=state.accent;
+  document.getElementById('rank-next').textContent=nextLv?`${nextLv.min-state.points} pts to ${nextLv.label}`:'Max rank achieved! 🌌';
+  const pct=nextLv?Math.min(100,((state.points-lv.min)/(nextLv.min-lv.min))*100):100;
+  setTimeout(()=>document.getElementById('rank-bar').style.width=pct+'%',100);
+  const chips=document.getElementById('rank-chips');
+  chips.innerHTML=LEVELS.map(l=>{
+    const earned=state.points>=l.min;
+    return `<span class="rank-chip" style="background:${earned?'rgba(0,255,135,.07)':'#080d09'};border:1px solid ${earned?'rgba(0,255,135,.25)':'#0c1610'};color:${earned?'#00ff87':'#1e3820'}">${l.label}</span>`;
   }).join('');
 }
 
-/* ── Mini pie chart with Canvas ── */
-function drawPie(data){
-  const canvas=document.getElementById('pie-canvas');
-  const wrap=canvas.parentElement;
-  const size=Math.min(wrap.clientWidth,170)||160;
-  canvas.width=size; canvas.height=size;
-  const ctx=canvas.getContext('2d');
-  const cx=size/2,cy=size/2,r=size*.44,ir=size*.28;
-  let start=-Math.PI/2;
-  const total=data.reduce((s,d)=>s+d.value,0);
-  ctx.clearRect(0,0,size,size);
-  data.forEach(d=>{
-    const slice=(d.value/total)*Math.PI*2;
-    ctx.beginPath(); ctx.moveTo(cx,cy);
-    ctx.arc(cx,cy,r,start,start+slice);
-    ctx.closePath(); ctx.fillStyle=d.color; ctx.fill();
-    // inner hole
-    start+=slice;
-  });
-  // donut hole
-  ctx.beginPath(); ctx.arc(cx,cy,ir,0,Math.PI*2); ctx.fillStyle='#080d09'; ctx.fill();
-}
-
-/* ─────────────────────────────────────────
-   GUIDE TAB
-───────────────────────────────────────── */
 function renderGuide(){
-  document.getElementById('guide-list').innerHTML=Object.entries(CAT).map(([k,t])=>`
-    <div class="guide-card" style="border:1px solid ${t.border}45">
+  const gl=document.getElementById('guide-list');
+  gl.innerHTML=Object.entries(CAT).map(([k,t])=>`
+    <div class="guide-card" style="border:1px solid ${t.border}40">
       <div class="guide-header">
         <div class="guide-icon" style="background:${t.bg};border:1px solid ${t.border}">${t.emoji}</div>
         <div>
           <div class="guide-title" style="color:${t.color}">${t.label}</div>
-          <div class="guide-cat">${k.toUpperCase()} CATEGORY</div>
+          <div class="guide-cat">→ ${t.bin}</div>
         </div>
       </div>
-      <div class="guide-tip">${t.tip}</div>
       <div class="guide-divider" style="background:${t.border}40"></div>
-      <div class="guide-bin" style="margin-top:10px">→ ${t.bin}</div>
+      <div class="guide-tip">${t.tip}</div>
     </div>`).join('');
 }
 
-/* ─────────────────────────────────────────
-   HELPERS
-───────────────────────────────────────── */
-function esc(s){ const d=document.createElement('div'); d.textContent=String(s||''); return d.innerHTML; }
-function curLevel(){ return LEVELS.filter(l=>state.points>=l.min).pop(); }
-function nextLevel(){ return LEVELS.find(l=>l.min>state.points); }
+// Init
+function init(){
+  loadStorage(); updateHeader(); initTicker(); renderGuide();
 
-function showToast(icon, msg){
-  const area=document.getElementById('toast-area');
-  const el=document.createElement('div'); el.className='toast';
-  el.innerHTML=`<span style="font-size:1.1rem">${icon}</span><span class="toast-msg">${esc(msg)}</span>`;
-  area.appendChild(el);
-  setTimeout(()=>el.remove(), 3000);
-}
+  // DnD
+  const dz=document.getElementById('drop-zone');
+  dz.addEventListener('click',()=>document.getElementById('file-input').click());
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='rgba(0,255,135,.6)';});
+  dz.addEventListener('dragleave',()=>dz.style.borderColor='');
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='';const f=e.dataTransfer.files[0];if(f)loadFile(f);});
 
-function showPtsPop(pts){
-  const el=document.getElementById('pts-pop');
-  el.textContent='+'+pts; el.className='show';
-  setTimeout(()=>el.className='', 1500);
-}
-
-function speak(txt){
-  if(!state.voiceOn||!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(txt); u.rate=.9; u.pitch=1;
-  window.speechSynthesis.speak(u);
-}
-
-/* ─────────────────────────────────────────
-   CONFETTI
-───────────────────────────────────────── */
-function fireConfetti(){
-  const canvas=document.getElementById('confetti-canvas');
-  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-  const ctx=canvas.getContext('2d');
-  const COLS=['#00ff87','#aaff00','#00e5ff','#ffcc00','#7c83ff','#ff8c42'];
-  const parts=Array.from({length:110},()=>({
-    x:Math.random()*canvas.width, y:-12,
-    vx:(Math.random()-.5)*8, vy:Math.random()*5+2,
-    s:Math.random()*8+4, col:COLS[Math.floor(Math.random()*COLS.length)],
-    rot:Math.random()*360, rs:(Math.random()-.5)*14, a:1
-  }));
-  let raf;
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    let alive=false;
-    parts.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy; p.rot+=p.rs; p.a-=.006;
-      if(p.a<=0) return; alive=true;
-      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
-      ctx.globalAlpha=p.a; ctx.fillStyle=p.col;
-      ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.55); ctx.restore();
-    });
-    if(alive) raf=requestAnimationFrame(draw);
-    else ctx.clearRect(0,0,canvas.width,canvas.height);
-  }
-  cancelAnimationFrame(raf); draw();
-}
-
-/* ─────────────────────────────────────────
-   NAME MODAL
-───────────────────────────────────────── */
-function promptName(){
-  const n=prompt('Enter your name:',state.userName);
-  if(n!==null){ state.userName=n.trim()||'EcoHero'; store.set('es4-n',state.userName); updateHeader(); }
-}
-
-/* ─────────────────────────────────────────
-   EVENT LISTENERS
-───────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded',()=>{
-
-  loadStorage();
-  initTicker();
-  renderGuide();
-  updateHeader();
-  renderRecentScans();
-
-  // nav
-  document.querySelectorAll('.nav-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>switchTab(btn.dataset.tab));
-  });
-
-  // drop zone
-  document.getElementById('drop-zone').addEventListener('click',()=>document.getElementById('file-input').click());
-  document.getElementById('drop-zone').addEventListener('dragover',e=>e.preventDefault());
-  document.getElementById('drop-zone').addEventListener('drop',e=>{ e.preventDefault(); loadFile(e.dataTransfer.files[0]); });
-
-  // file input
-  document.getElementById('file-input').addEventListener('change',e=>loadFile(e.target.files[0]));
-
-  // gallery / camera buttons
+  document.getElementById('file-input').addEventListener('change',e=>{ if(e.target.files[0]) loadFile(e.target.files[0]); });
   document.getElementById('btn-gallery').addEventListener('click',()=>document.getElementById('file-input').click());
   document.getElementById('btn-camera').addEventListener('click',openCamera);
-
-  // camera modal
   document.getElementById('capture-btn').addEventListener('click',capturePhoto);
   document.getElementById('cam-close-btn').addEventListener('click',closeCamera);
 
-  // voice toggle
+  document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
+
   document.getElementById('voice-btn').addEventListener('click',()=>{
-    state.voiceOn=!state.voiceOn;
-    store.set('es4-v',state.voiceOn?'1':'0');
-    updateHeader();
+    state.voiceOn=!state.voiceOn; store.set('es4-v',state.voiceOn?'1':'0'); updateHeader();
+    showToast(state.voiceOn?'🔊':'🔇', state.voiceOn?'Voice on':'Voice off');
   });
 
-  // name
-  document.getElementById('name-btn').addEventListener('click',promptName);
-
-
-  // API key modal
-  const keyModal = document.getElementById('key-modal');
-  const keyInput = document.getElementById('key-input');
-  const keyStatus = document.getElementById('key-status');
-
-  function openKeyModal(){
-    const existing = store.get('es4-key')||'';
-    keyInput.value = existing;
-    keyStatus.textContent = existing ? '✅ Key saved — you can update it here.' : '';
-    keyStatus.style.color = '#00ff87';
-    keyModal.style.display = 'flex';
-    setTimeout(()=>keyInput.focus(),100);
-  }
-  function closeKeyModal(){ keyModal.style.display='none'; }
-
-  document.getElementById('key-btn').addEventListener('click', openKeyModal);
-  document.getElementById('key-cancel-btn').addEventListener('click', closeKeyModal);
-  document.getElementById('key-save-btn').addEventListener('click',()=>{
-    const k = keyInput.value.trim();
-    if(!k){ keyStatus.textContent='⚠️ Please enter a key.'; keyStatus.style.color='#ff6b6b'; return; }
-    if(!k.startsWith('sk-')){ keyStatus.textContent='⚠️ Key should start with sk-ant-…'; keyStatus.style.color='#ffcc00'; return; }
-    store.set('es4-key', k);
-    keyStatus.textContent='✅ Key saved!'; keyStatus.style.color='#00ff87';
-    setTimeout(closeKeyModal, 800);
+  document.getElementById('name-btn').addEventListener('click',()=>{
+    const n=prompt('Enter your eco name:',state.userName);
+    if(n&&n.trim()){ state.userName=n.trim(); store.set('es4-n',state.userName); updateHeader(); }
   });
-  keyInput.addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('key-save-btn').click(); });
+}
 
-  // Auto-open key modal if no key set
-  if(!store.get('es4-key')) setTimeout(openKeyModal, 600);
-
-  // expose to inline onclick
-  window.resetScan=resetScan;
-  window.classify=classify;
-  window.toggleExpand=toggleExpand;
-  window.setHFilter=setHFilter;
-});
+init();
 </script>
 </body>
 </html>
