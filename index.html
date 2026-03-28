@@ -246,6 +246,7 @@ img{display:block;max-width:100%}
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:6px">
+      <button id="key-btn" title="Set API Key" style="width:30px;height:30px;border-radius:9px;background:#0a1210;border:1px solid #142018;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s">⚙️</button>
       <button id="voice-btn" title="Toggle voice" style="width:30px;height:30px;border-radius:9px;background:#0a1210;border:1px solid #142018;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .2s">🔇</button>
       <div style="display:flex;align-items:center;gap:5px;background:#0a1210;border:1px solid #142018;border-radius:99px;padding:4px 11px;font-size:.72rem">
         <span style="color:#ffcc00">⚡</span>
@@ -396,6 +397,21 @@ img{display:block;max-width:100%}
   <div style="display:flex;gap:12px">
     <button id="capture-btn" style="background:#00ff87;color:#02050a;font-family:'Chakra Petch';font-weight:700;font-size:1rem;letter-spacing:.04em;padding:15px 42px;border-radius:50px;box-shadow:0 0 32px rgba(0,255,135,.55)">📸 CAPTURE</button>
     <button id="cam-close-btn" style="background:#0c1610;border:1px solid #182a1e;border-radius:50px;padding:15px 26px;color:#4a7050;font-family:'Chakra Petch';font-weight:600">✕</button>
+  </div>
+</div>
+
+
+<!-- API KEY MODAL -->
+<div id="key-modal" style="position:fixed;inset:0;background:rgba(2,5,3,.97);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#080d09;border:1px solid rgba(0,255,135,.3);border-radius:22px;padding:28px 24px;max-width:380px;width:100%;box-shadow:0 0 60px rgba(0,255,135,.1)">
+    <div style="font-family:'Chakra Petch';font-weight:700;font-size:1.1rem;color:#00ff87;margin-bottom:6px">⚙️ Anthropic API Key</div>
+    <div style="font-size:.75rem;color:#3a5a40;margin-bottom:16px;line-height:1.6">Required to run AI classification.<br>Get yours free at <a href="https://console.anthropic.com" target="_blank" style="color:#00ff87">console.anthropic.com</a><br><span style="color:#2a4a30;font-size:.68rem">Your key is stored only in your browser (localStorage) and never sent anywhere except Anthropic's API.</span></div>
+    <input id="key-input" type="password" placeholder="sk-ant-api03-..." style="width:100%;background:#0a1210;border:1px solid rgba(0,255,135,.3);border-radius:12px;padding:12px 14px;font-size:.85rem;color:#d8e8dc;font-family:'JetBrains Mono';margin-bottom:12px;outline:none"/>
+    <div id="key-status" style="font-size:.72rem;margin-bottom:12px;min-height:18px"></div>
+    <div style="display:flex;gap:9px">
+      <button id="key-save-btn" style="flex:2;background:#00ff87;color:#02050a;font-family:'Chakra Petch';font-weight:700;font-size:.88rem;padding:12px;border-radius:12px;box-shadow:0 4px 20px rgba(0,255,135,.4)">Save &amp; Continue</button>
+      <button id="key-cancel-btn" style="flex:1;background:#0a1210;border:1px solid #182018;border-radius:12px;padding:12px;color:#3a5840;font-family:'Chakra Petch';font-weight:600;font-size:.82rem">Cancel</button>
+    </div>
   </div>
 </div>
 
@@ -611,8 +627,8 @@ function closeCamera(){
 ───────────────────────────────────────── */
 function showPhase(ph){
   state.phase = ph;
-  state.result = null;
-  state.expandOpen = false;
+  if(ph==='idle'||ph==='preview') state.result = null;
+  if(ph==='idle'||ph==='preview') state.expandOpen = false;
 
   const idle  = document.getElementById('idle-state');
   const scan  = document.getElementById('scan-state');
@@ -704,9 +720,17 @@ async function classify(){
     const base64 = state.imgData.split(',')[1];
     const mime   = state.imgData.split(';')[0].split(':')[1];
 
+    const apiKey = (store.get('es4-key')||'').trim();
+    if(!apiKey){ showError('No API key set — tap ⚙️ in the header to enter your Anthropic API key.'); return; }
+
     const res = await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+      },
       body: JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
@@ -719,8 +743,25 @@ async function classify(){
     });
 
     const data = await res.json();
+    // Handle API-level errors (bad key, rate limit, billing, etc.)
+    if(data.error){
+      const apiErr = data.error.message || JSON.stringify(data.error);
+      if(apiErr.includes('authentication') || apiErr.includes('API key') || apiErr.includes('invalid x-api-key')){
+        showError('Invalid API key — tap ⚙️ and re-enter your key from console.anthropic.com');
+      } else if(apiErr.includes('rate')){
+        showError('Rate limited — please wait a moment and retry.');
+      } else if(apiErr.includes('credit') || apiErr.includes('billing')){
+        showError('Billing issue — check your Anthropic account at console.anthropic.com');
+      } else {
+        showError('API error: ' + apiErr.slice(0,120));
+      }
+      return;
+    }
     const raw  = (data.content?.[0]?.text||'').trim().replace(/```json|```/g,'').trim();
-    const parsed = JSON.parse(raw);
+    if(!raw){ showError('Empty response from AI — please retry.'); return; }
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch(je){ showError('Could not parse AI response. Please retry.'); console.error('Parse error:', raw); return; }
 
     if(parsed.error){ showError(parsed.error); return; }
 
@@ -763,7 +804,12 @@ async function classify(){
     updateHeader();
 
   } catch(e){
-    showError('Classification failed — check your connection and retry.');
+    console.error('EcoSort classify error:', e);
+    let msg = 'Classification failed.';
+    if(e instanceof SyntaxError) msg = 'AI returned unexpected response. Please retry.';
+    else if(e.message && e.message.includes('fetch')) msg = 'Network error — check your internet connection.';
+    else if(e.message) msg = e.message;
+    showError(msg + '  (See browser console for details)');
   }
 }
 
@@ -1161,6 +1207,37 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   // name
   document.getElementById('name-btn').addEventListener('click',promptName);
+
+
+  // API key modal
+  const keyModal = document.getElementById('key-modal');
+  const keyInput = document.getElementById('key-input');
+  const keyStatus = document.getElementById('key-status');
+
+  function openKeyModal(){
+    const existing = store.get('es4-key')||'';
+    keyInput.value = existing;
+    keyStatus.textContent = existing ? '✅ Key saved — you can update it here.' : '';
+    keyStatus.style.color = '#00ff87';
+    keyModal.style.display = 'flex';
+    setTimeout(()=>keyInput.focus(),100);
+  }
+  function closeKeyModal(){ keyModal.style.display='none'; }
+
+  document.getElementById('key-btn').addEventListener('click', openKeyModal);
+  document.getElementById('key-cancel-btn').addEventListener('click', closeKeyModal);
+  document.getElementById('key-save-btn').addEventListener('click',()=>{
+    const k = keyInput.value.trim();
+    if(!k){ keyStatus.textContent='⚠️ Please enter a key.'; keyStatus.style.color='#ff6b6b'; return; }
+    if(!k.startsWith('sk-')){ keyStatus.textContent='⚠️ Key should start with sk-ant-…'; keyStatus.style.color='#ffcc00'; return; }
+    store.set('es4-key', k);
+    keyStatus.textContent='✅ Key saved!'; keyStatus.style.color='#00ff87';
+    setTimeout(closeKeyModal, 800);
+  });
+  keyInput.addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('key-save-btn').click(); });
+
+  // Auto-open key modal if no key set
+  if(!store.get('es4-key')) setTimeout(openKeyModal, 600);
 
   // expose to inline onclick
   window.resetScan=resetScan;
